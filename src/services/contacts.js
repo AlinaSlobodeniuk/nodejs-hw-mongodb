@@ -11,20 +11,22 @@ export async function getContactById(contactId) {
 }
 
 export const createContacts = async (payload) => {
-const contact = await ContactsCollection.create(payload);
-return contact;
+  const contact = await ContactsCollection.create(payload);
+  return contact;
 };
 
 export const updateContact = async (contactId, payload) => {
-const contact = await ContactsCollection.findOneAndUpdate(
-  { _id: contactId },
-  payload,
-  { new: true },
-);
-return contact;
+  const contact = await ContactsCollection.findOneAndUpdate(
+    { _id: contactId },
+    payload,
+    { new: true },
+  );
+  return contact;
 };
 
 export const deleteContact = async (contactId) => {
-  const contact = await ContactsCollection.findOneAndDelete(contactId);
+  const contact = await ContactsCollection.findOneAndDelete({
+    _id: contactId,
+  });
   return contact;
 };

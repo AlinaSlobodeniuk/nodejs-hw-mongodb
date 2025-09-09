@@ -12,6 +12,6 @@ const router = Router();
 
    router.patch('/contacts/:contactId', ctrlWrapper(patchContactsController));
 
-   router.delete('/contacts/:contactsId', ctrlWrapper(deleteContactController));
+   router.delete('/contacts/:contactId', ctrlWrapper(deleteContactController));
 
 export default router;
