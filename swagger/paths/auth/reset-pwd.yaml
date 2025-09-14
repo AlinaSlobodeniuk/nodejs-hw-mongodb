@@ -1,0 +1,47 @@
+tags:
+  - Auth
+summary: Reset password
+operationId: resetPassword
+description: |
+  Resets user password using a JWT token from the email.
+  All user sessions will be invalidated after reset.
+security: []
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          token:
+            type: string
+            example: '<jwt-token>'
+          password:
+            type: string
+            example: 'new pxxxxxxxxword'
+        required:
+          - token
+          - password
+responses:
+  '200':
+    description: Password has been successfully reset
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: 'Password has been successfully reset.'
+            data:
+              type: object
+              example: {}
+  '400':
+    $ref: '../../components/responces/auth/400auth.yaml'
+  '401':
+    $ref: '../../components/responces/auth/401authreset.yaml'
+  '404':
+    $ref: '../../components/responces/auth/404auth.yaml'
