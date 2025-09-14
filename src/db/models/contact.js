@@ -1,4 +1,3 @@
-
 import { model, Schema, Types } from 'mongoose';
 
 const contactsSchema = new Schema(
@@ -28,10 +27,11 @@ const contactsSchema = new Schema(
       type: Types.ObjectId,
       ref: 'users',
     },
+    photo: { type: String },
   },
   {
     timestamps: true,
-    versionKey: false
+    versionKey: false,
   },
 );
 
