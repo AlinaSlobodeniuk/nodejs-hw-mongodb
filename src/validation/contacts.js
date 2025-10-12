@@ -10,7 +10,7 @@ export const createContactsSchema = Joi.object({
   }),
   phoneNumber: Joi.string().min(3).max(20).required(),
   email: Joi.string().min(3).max(30),
-  isFavourite: Joi.boolean().default(false),
+  isFavourite: Joi.boolean().optional().default(false),
   contactType: Joi.string().valid('work', 'home', 'personal').default(false),
   userId: Joi.string().custom((value, helper) => {
     if (value && !isValidObjectId(value)) {
