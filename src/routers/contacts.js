@@ -15,6 +15,7 @@ import {
 import { isValidId } from '../middlewares/isValidId.js';
 import { authenticate } from '../middlewares/authenticate.js';
 import { upload } from '../middlewares/multer.js';
+import { parseToBoolean } from '../middlewares/parseToBoolean.js';
 
 const router = Router();
 
@@ -22,11 +23,7 @@ router.use(authenticate);
 
 router.get('/', ctrlWrapper(getContactsController));
 
-router.get(
-  '/:contactId',
-  isValidId,
-  ctrlWrapper(getContactsByIdController),
-);
+router.get('/:contactId', isValidId, ctrlWrapper(getContactsByIdController));
 
 router.post(
   '/',
@@ -39,14 +36,11 @@ router.patch(
   '/:contactId',
   isValidId,
   upload.single('photo'),
+  parseToBoolean,
   validateBody(updateContactSchema),
   ctrlWrapper(patchContactsController),
 );
 
-router.delete(
-  '/:contactId',
-  isValidId,
-  ctrlWrapper(deleteContactController),
-);
+router.delete('/:contactId', isValidId, ctrlWrapper(deleteContactController));
 
 export default router;
